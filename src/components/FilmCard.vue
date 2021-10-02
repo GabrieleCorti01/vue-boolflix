@@ -1,6 +1,6 @@
 <template>
   <div class="container-card">
-      <h2>{{ element }}</h2>
+      <h2>{{ element.title }}</h2>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 
 export default {
     name: 'FilmCard',
-    props: "element"
+    props: ["element"]
 
 }
 </script>
