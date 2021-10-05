@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @searching="cerca" />
-    <Main :movies="films"/>
+    <Main :movies="films" :series="tvSeries"/>
   </div>
 </template>
 
@@ -35,28 +35,24 @@ export default {
           (errore) =>{
             console.warn("Errore nella richiesta!", errore)
           })
-      }
-    },
-
-    cercaSerie: function (needle){
-      if(cercaSerie.length > 1){
-        axios.get(this.apiUrlSeries, {
+  // RICERCA SERIE TV
+          axios.get(this.apiUrlSeries, {
           params: {
-            api_Key: this.apiKey,
+            api_key: this.apiKey,
             query: needle,
             language: 'it_IT'
           }
         }).then(
-          (risposta) =>{
-            this.series = [...risposta.data.results];
-            console.log(this.series)
+          (response) =>{
+            this.tvSeries = [...response.data.results];
+            console.log(this.tvSeries)
+            
           })
           .catch(
             (errore) =>{
-              console.warn("Errore nella richiesta!",errore)
-            }
-          )
-      }
+              console.warn("Errore nella richiesta!", errore)
+            })
+      }        
     }
   },
   data: function(){
@@ -65,7 +61,7 @@ export default {
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
       apiKey: '47c1ea959a92449f222c88cc1b40ea56',
       films: [],
-      series: []
+      tvSeries: []
     }
   }
 }

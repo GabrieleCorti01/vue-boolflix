@@ -3,7 +3,8 @@
   <div class="row">
     <h2>Film trovati:</h2>
     <FilmCard v-for="movie in movies" :key="movie.id" :movie="movie"/>
-    <SeriesCard v-for="show in series" :key="show.id" :show="show"/>
+    <h2>Serie trovate:</h2>
+    <FilmCard v-for="serie in series" :key="serie.id" :movie="serie"/>
   </div>
 
   <!-- Sezione ricerca Series -->
@@ -12,7 +13,6 @@
 
 <script>
 import FilmCard from './FilmCard.vue'
-import SeriesCard from './SeriesCard.vue'
 
 export default {
   name: 'Main',
@@ -22,7 +22,6 @@ export default {
   },
   components: {
     FilmCard,
-    SeriesCard,
   },
   data : function(){
     return {
