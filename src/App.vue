@@ -36,13 +36,36 @@ export default {
             console.warn("Errore nella richiesta!", errore)
           })
       }
+    },
+
+    cercaSerie: function (needle){
+      if(cercaSerie.length > 1){
+        axios.get(this.apiUrlSeries, {
+          params: {
+            api_Key: this.apiKey,
+            query: needle,
+            language: 'it_IT'
+          }
+        }).then(
+          (risposta) =>{
+            this.series = [...risposta.data.results];
+            console.log(this.series)
+          })
+          .catch(
+            (errore) =>{
+              console.warn("Errore nella richiesta!",errore)
+            }
+          )
+      }
     }
   },
   data: function(){
     return{
+      apiUrlSeries: 'https://api.themoviedb.org/3/search/tv',
       apiUrl: 'https://api.themoviedb.org/3/search/movie',
       apiKey: '47c1ea959a92449f222c88cc1b40ea56',
-      films: []
+      films: [],
+      series: []
     }
   }
 }
